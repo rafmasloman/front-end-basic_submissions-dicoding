@@ -24,7 +24,7 @@ const addBook = () => {
   const book = generateBooks(id, title, author, year, isComplete);
   books.push(book);
 
-  localStorage.setItem('books', JSON.stringify(books));
+  localStorage.setItem('books', books);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
 };
@@ -89,6 +89,10 @@ const makeBooks = (bookObject) => {
     finishButton.classList.add('green');
     finishButton.innerText = 'Selesai Dibaca';
 
+    finishButton.addEventListener('click', (e) => {
+      console.log(e.target);
+    });
+
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('red');
     deleteButton.innerText = 'Hapus Buku';
@@ -109,7 +113,8 @@ const bookObject = () => {
 
   const incompleteBooks = document.querySelector('#incompleteBookshelfList');
   incompleteBooks.innerHTML = '';
-  const listBooks = JSON.parse(localStorage.getItem('books'));
+  const listBooks = localStorage.getItem('books');
+  console.log(JSON.stringify(listBooks));
   for (const book of books) {
     const bookObject = makeBooks(book);
     if (!book.isComplete) {

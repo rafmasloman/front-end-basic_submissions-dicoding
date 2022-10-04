@@ -47,33 +47,25 @@ const makeBooks = (bookObject) => {
   const authorText = document.createElement('p');
   const yearText = document.createElement('p');
 
-  // const insertData = listBooks.map((book) => {
-  //   titleBook.innerText = book.title;
-  //   authorText.innerText = `Penulis: ${book.author}`;
-  //   yearText.innerText = `Tahun ${book.year}`;
-  // });
-
-  // const checkBooks = listBooks.filter((book) => {
-  //   book.isComplete
-  //     ? completeBooks.appendChild(article)
-  //     : incompleteBooks.appe ndChild(article);
-  // });
-
-  // finishButton.addEventListener('click', (e) => {
-  //   console.log(checkBooks);
-  // });
-
   if (bookObject.isComplete) {
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('action');
 
     const finishButton = document.createElement('button');
     finishButton.classList.add('green');
-    finishButton.innerText = 'Selesai Dibaca';
+    finishButton.innerText = 'Belum Selesai Dibaca';
+
+    finishButton.addEventListener('click', (e) => {
+      const finished = unfinishedBooks(bookObject.id);
+    });
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('red');
     deleteButton.innerText = 'Hapus Buku';
+
+    deleteButton.addEventListener('click', (e) => {
+      const deleted = deleteBook(bookObject.id);
+    });
 
     titleBook.innerText = bookObject.title;
     authorText.innerText = `Penulis: ${bookObject.author}`;
@@ -90,12 +82,16 @@ const makeBooks = (bookObject) => {
     finishButton.innerText = 'Selesai Dibaca';
 
     finishButton.addEventListener('click', (e) => {
-      console.log(e.target);
+      const finished = finishBooks(bookObject.id);
     });
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('red');
     deleteButton.innerText = 'Hapus Buku';
+
+    deleteButton.addEventListener('click', (e) => {
+      const deleted = deleteBook(bookObject.id);
+    });
 
     titleBook.innerText = bookObject.title;
     authorText.innerText = `Penulis: ${bookObject.author}`;
@@ -104,7 +100,46 @@ const makeBooks = (bookObject) => {
     buttonContainer.append(finishButton, deleteButton);
     article.append(titleBook, authorText, yearText, buttonContainer);
   }
+
   return article;
+};
+
+const findId = (bookId) => {
+  const id = books.filter((book) => {
+    return book.id === bookId ? book : null;
+  });
+  return id[0];
+};
+
+const finishBooks = (bookId) => {
+  const getId = findId(bookId);
+  if (getId == null) return;
+
+  getId.isComplete = true;
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+};
+
+const unfinishedBooks = (bookId) => {
+  const getId = findId(bookId);
+  if (getId == null) return;
+
+  getId.isComplete = false;
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+};
+
+const deleteBook = (bookId) => {
+  const getId = findId(bookId);
+  if (getId == null) return;
+
+  const getIndexId = books.findIndex((book) => {
+    return book.id === bookId;
+  });
+
+  books.splice(getIndexId, 1);
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
 const bookObject = () => {
@@ -113,8 +148,9 @@ const bookObject = () => {
 
   const incompleteBooks = document.querySelector('#incompleteBookshelfList');
   incompleteBooks.innerHTML = '';
+
   const listBooks = localStorage.getItem('books');
-  console.log(JSON.stringify(listBooks));
+
   for (const book of books) {
     const bookObject = makeBooks(book);
     if (!book.isComplete) {
@@ -123,11 +159,6 @@ const bookObject = () => {
       completeBooks.append(bookObject);
     }
   }
-};
-
-const showBooks = () => {
-  const items = JSON.parse(localStorage.getItem('books'));
-  console.log(items);
 };
 
 document.addEventListener(RENDER_EVENT, () => {

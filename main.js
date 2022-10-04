@@ -2,15 +2,22 @@ const main = () => {};
 
 document.addEventListener('DOMContentLoaded', () => {
   const formSubmit = document.querySelector('#inputBook');
+  const formSearch = document.querySelector('#searchBook');
 
   formSubmit.addEventListener('submit', (e) => {
     e.preventDefault();
     addBook();
   });
+
+  formSearch.addEventListener('submit', (e) => {
+    e.preventDefault();
+    searchObject();
+  });
 });
 
 const books = [];
 const RENDER_EVENT = 'render-todo';
+const RENDER_SEARCH = 'render-search';
 
 const addBook = () => {
   const id = Number(new Date());
@@ -142,6 +149,44 @@ const deleteBook = (bookId) => {
   document.dispatchEvent(new Event(RENDER_EVENT));
 };
 
+const findBookByTitle = () => {};
+const searchResult = (inputTitle) => {
+  const getBookByTitle = books.filter((book) => {
+    return book.title === inputSearch.value;
+  });
+
+  console.log(getBookByTitle);
+};
+
+const generateSearch = (bookObject) => {
+  const article = document.createElement('article');
+  article.setAttribute('class', 'book_item');
+
+  const titleBook = document.createElement('h3');
+  const authorText = document.createElement('p');
+  const yearText = document.createElement('p');
+
+  titleBook.innerText = bookObject.title;
+  authorText.innerText = `Penulis: ${bookObject.author}`;
+  yearText.innerText = `Tahun ${bookObject.year}`;
+
+  article.append(titleBook, authorText, yearText);
+  return article;
+};
+
+const searchObject = () => {
+  const inputSearch = document.querySelector('#searchBookTitle');
+
+  const searchResult = document.querySelector('#searchBookResult');
+
+  for (const book of books) {
+    const searchBook = generateSearch(book);
+    if (inputSearch.value === book.title) {
+      searchResult.append(searchBook);
+    }
+  }
+};
+
 const bookObject = () => {
   const completeBooks = document.querySelector('#completeBookshelfList');
   completeBooks.innerHTML = '';
@@ -159,7 +204,17 @@ const bookObject = () => {
       completeBooks.append(bookObject);
     }
   }
+
+  // for (const book of books) {
+  //   const searchGenerate = searchBook(book);
+  //   console.log(searchGenerate);
+  // }
+  // const searchGenerate = searchBook(books);
 };
+
+// document.addEventListener(RENDER_SEARCH, () => {
+//   searchObject();
+// });
 
 document.addEventListener(RENDER_EVENT, () => {
   bookObject();

@@ -18,8 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
 const RENDER_EVENT = 'render-books';
 const RENDER_SEARCH = 'render-search';
 const LOAD_DATA = 'load-data';
+const STORE_DATA = 'store-data';
 
 let books = [];
+
+const storeBooks = () => {
+  const storeBooks = localStorage.setItem('books', JSON.stringify(books));
+
+  document.dispatchEvent(new Event(STORE_DATA));
+};
 
 const loadBooks = () => {
   const bookStorage = JSON.parse(localStorage.getItem('books'));
@@ -45,7 +52,7 @@ const addBook = () => {
 
   books.push(book);
 
-  localStorage.setItem('books', JSON.stringify(books));
+  storeBooks();
   loadBooks();
 };
 
@@ -137,7 +144,8 @@ const finishBooks = (bookId) => {
   if (getId == null) return;
 
   getId.isComplete = true;
-  localStorage.setItem('books', JSON.stringify(books));
+  // localStorage.setItem('books', JSON.stringify(books));
+  storeBooks();
 
   document.dispatchEvent(new Event(LOAD_DATA));
 };
@@ -147,7 +155,8 @@ const unfinishedBooks = (bookId) => {
   if (getId == null) return;
 
   getId.isComplete = false;
-  localStorage.setItem('books', JSON.stringify(books));
+  // localStorage.setItem('books', JSON.stringify(books));
+  storeBooks();
 
   document.dispatchEvent(new Event(LOAD_DATA));
 };
@@ -160,8 +169,9 @@ const deleteBook = (bookId) => {
   });
 
   books.splice(getIndexId, 1);
-  localStorage.setItem('books', JSON.stringify(books));
+  // localStorage.setItem('books', JSON.stringify(books));
 
+  storeBooks();
   document.dispatchEvent(new Event(LOAD_DATA));
 };
 

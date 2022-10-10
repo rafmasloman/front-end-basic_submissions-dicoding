@@ -1,5 +1,3 @@
-const main = () => {};
-
 document.addEventListener('DOMContentLoaded', () => {
   const formSubmit = document.querySelector('#inputBook');
   const formSearch = document.querySelector('#searchBook');
@@ -13,11 +11,26 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     searchObject();
   });
+
+  loadBooks();
 });
 
-const books = [];
-const RENDER_EVENT = 'render-todo';
+const RENDER_EVENT = 'render-books';
 const RENDER_SEARCH = 'render-search';
+const LOAD_DATA = 'load-data';
+
+let books = [];
+
+const loadBooks = () => {
+  const bookStorage = JSON.parse(localStorage.getItem('books'));
+  console.log(bookStorage);
+
+  if (bookStorage !== null) {
+    books = bookStorage;
+  }
+
+  document.dispatchEvent(new Event(LOAD_DATA));
+};
 
 const addBook = () => {
   const id = Number(new Date());
@@ -29,11 +42,11 @@ const addBook = () => {
   const isComplete = document.querySelector('#inputBookIsComplete').checked;
 
   const book = generateBooks(id, title, author, year, isComplete);
+
   books.push(book);
 
-  localStorage.setItem('books', books);
-
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  localStorage.setItem('books', JSON.stringify(books));
+  loadBooks();
 };
 
 const generateBooks = (id, title, author, year, isComplete) => {
@@ -120,11 +133,13 @@ const findId = (bookId) => {
 
 const finishBooks = (bookId) => {
   const getId = findId(bookId);
+  console.log(getId);
   if (getId == null) return;
 
   getId.isComplete = true;
+  localStorage.setItem('books', JSON.stringify(books));
 
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(LOAD_DATA));
 };
 
 const unfinishedBooks = (bookId) => {
@@ -132,21 +147,22 @@ const unfinishedBooks = (bookId) => {
   if (getId == null) return;
 
   getId.isComplete = false;
+  localStorage.setItem('books', JSON.stringify(books));
 
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(LOAD_DATA));
 };
 
 const deleteBook = (bookId) => {
   const getId = findId(bookId);
   if (getId == null) return;
-
   const getIndexId = books.findIndex((book) => {
     return book.id === bookId;
   });
 
   books.splice(getIndexId, 1);
+  localStorage.setItem('books', JSON.stringify(books));
 
-  document.dispatchEvent(new Event(RENDER_EVENT));
+  document.dispatchEvent(new Event(LOAD_DATA));
 };
 
 const findBookByTitle = () => {};
@@ -194,8 +210,6 @@ const bookObject = () => {
   const incompleteBooks = document.querySelector('#incompleteBookshelfList');
   incompleteBooks.innerHTML = '';
 
-  const listBooks = localStorage.getItem('books');
-
   for (const book of books) {
     const bookObject = makeBooks(book);
     if (!book.isComplete) {
@@ -216,6 +230,10 @@ const bookObject = () => {
 //   searchObject();
 // });
 
-document.addEventListener(RENDER_EVENT, () => {
+document.addEventListener(LOAD_DATA, () => {
   bookObject();
 });
+
+// document.addEventListener(RENDER_EVENT, () => {
+
+// });

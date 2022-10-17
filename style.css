@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
 
 * {
   padding: 0;
@@ -17,6 +17,25 @@ button {
   font-size: 16px;
 }
 
+nav {
+  position: absolute;
+  left: 150px;
+  display: flex;
+  align-items: center;
+  top: 20px;
+}
+
+nav > .logo-brand {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+}
+
+nav > .brand-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 .head_bar {
   padding: 12px;
   display: flex;
@@ -29,6 +48,9 @@ button {
 main {
   width: 100%;
   margin: 0 auto;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 .hero {
   display: flex;
@@ -45,16 +67,16 @@ main {
   flex: 1;
   background-color: #0057fb;
   color: white;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding: 250px 0 0 70px;
 }
 
 .left-content > .content > h1 {
-  font-size: 3.75rem;
+  font-size: 3.25rem;
 }
 
 .left-content > .content > p {
   font-weight: 300;
+  width: 70%;
 }
 
 .input_section {
@@ -115,7 +137,8 @@ main {
 
 .input_section > form > .input_inline {
   margin: 12px 0;
-  display: flex;
+  width: 60%;
+  text-align: left;
 }
 
 .input_section > form > .input_inline > label {
@@ -136,9 +159,10 @@ main {
 }
 
 .search_section > form {
-  width: 30%;
+  width: 40%;
   justify-content: space-between;
   position: relative;
+  margin: 0 auto;
 }
 
 .search_section > form > input {
@@ -147,6 +171,7 @@ main {
   padding-right: 1.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  margin: 40px 0 40px 0;
   border-radius: 20px;
   border-width: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
@@ -157,6 +182,7 @@ main {
   position: absolute;
   right: 1.5rem;
   padding-top: 0.5rem;
+  margin: 40px 0 40px 0;
   background-color: transparent;
   border-width: 0;
 }
@@ -205,11 +231,19 @@ main {
     cursor: pointer;
 } */
 
+.book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
 .book_shelf {
   margin: 16px 0 0 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   padding: 16px;
   border-radius: 10px;
+  width: 60%;
 }
 
 .book_shelf > h2 {

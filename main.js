@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formSearch.addEventListener('submit', (e) => {
     e.preventDefault();
+    searchBook();
   });
 
   loadBooks();
@@ -20,6 +21,34 @@ const LOAD_DATA = 'load-data';
 const STORE_DATA = 'store-data';
 
 let books = [];
+
+const searchBook = () => {
+  const searchValue = document.querySelector('#searchBookTitle');
+
+  const completeBooks = document.querySelector('#completeBookshelfList');
+  completeBooks.innerHTML = '';
+
+  const incompleteBooks = document.querySelector('#incompleteBookshelfList');
+  incompleteBooks.innerHTML = '';
+
+  for (const book of books) {
+    const bookObject = makeBooks(book);
+    if (searchValue.value.toLowerCase().includes(book.title.toLowerCase())) {
+      if (!book.isComplete) {
+        incompleteBooks.append(bookObject);
+      } else {
+        completeBooks.append(bookObject);
+      }
+    } else {
+      console.log(book.title.toLowerCase());
+      if (!book.isComplete) {
+        incompleteBooks.append(bookObject);
+      } else {
+        completeBooks.append(bookObject);
+      }
+    }
+  }
+};
 
 const storeBooks = () => {
   const storeBooks = localStorage.setItem('books', JSON.stringify(books));

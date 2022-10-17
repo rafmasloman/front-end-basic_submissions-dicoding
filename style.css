@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 body,
 input,
 button {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 input,
@@ -25,27 +28,63 @@ button {
 }
 
 main {
-  max-width: 800px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  padding: 16px;
+}
+.hero {
+  display: flex;
+  width: 100%;
+  
+}
+
+
+.right-content {
+  flex: 1;
+  background-color: green;
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+.left-content {
+  flex: 1;
+  background-color: #0057FB;
+  color: white;
+  padding-top: 200px;
+  padding-bottom: 200px;
+
+}
+
+.left-content > .content > h1 {
+  font-size: 3.75rem
+
+}
+
+.left-content > .content > p {
+  font-weight: 300;
 }
 
 .input_section {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  border: 1px solid black;
+  padding: 2rem ;
   border-radius: 10px;
 }
 
 .input_section > h2 {
-  text-align: center;
   color: cornflowerblue;
+  margin-bottom: 20px;
+}
+
+.input_section > form {
+  background-color: red;
+  width: 100%;
 }
 
 .input_section > form > .input {
+  width: 60%;
   margin: 8px 0;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .input_section > form > button {
@@ -68,11 +107,16 @@ main {
   width: 100%;
   padding: 8px;
   border-radius: 5px;
+  border-width: 0.5px;
+  margin-top: 1rem;
+
+
 }
 
 .input_section > form > .input > label {
-  color: cornflowerblue;
+  color: black;
   font-weight: bold;
+  align-self: flex-start;
 }
 
 .input_section > form > .input_inline {
@@ -87,13 +131,23 @@ main {
   margin-right: 10px;
 }
 
+.input_section > form > button {
+  width: 60%;
+  height: 2.625rem;
+  border-radius: 8px;
+  background-color: #0057FB;
+}
+
 .search_section {
   margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .search_section > form {
   display: flex;
-  width: 100%;
+  width: 30%;
   justify-content: space-between;
 }
 

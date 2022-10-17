@@ -22,34 +22,51 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="head_bar">
+    <!-- <header class="head_bar">
       <h1 class="head_bar__title">Bookshelf Apps</h1>
-    </header>
+    </header> -->
     <main>
-      <section class="input_section">
-        <h2>Masukkan Buku Baru</h2>
-        <form id="inputBook">
-          <div class="input">
-            <label for="inputBookTitle">Judul</label>
-            <input id="inputBookTitle" type="text" required />
-          </div>
-          <div class="input">
-            <label for="inputBookAuthor">Penulis</label>
-            <input id="inputBookAuthor" type="text" required />
-          </div>
-          <div class="input">
-            <label for="inputBookYear">Tahun</label>
-            <input id="inputBookYear" type="number" required />
-          </div>
-          <div class="input_inline">
-            <label for="inputBookIsComplete">Selesai dibaca</label>
-            <input id="inputBookIsComplete" type="checkbox" />
-          </div>
-          <button id="bookSubmit" type="submit">
-            Masukkan Buku ke rak <span>Belum selesai dibaca</span>
-          </button>
-        </form>
+      <section class="hero">
+        <div class="left-content">
+          <section class="content">
+            <h1 class="content-title">
+              Help to manage your book
+            </h1>
+            <p class="content-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, blanditiis vitae. Distinctio illum in cumque architecto labore facilis unde eius?
+            </p>
+          </section>
+        </div>
+        <div class="right-content">
+          
+          
+          <section class="input_section">
+            <h2>Book Management</h2>
+            <form id="inputBook">
+              <div class="input">
+                <label for="inputBookTitle">Judul</label>
+                <input id="inputBookTitle" type="text" required />
+              </div>
+              <div class="input">
+                <label for="inputBookAuthor">Penulis</label>
+                <input id="inputBookAuthor" type="text" required />
+              </div>
+              <div class="input">
+                <label for="inputBookYear">Tahun</label>
+                <input id="inputBookYear" type="number" required />
+              </div>
+              <div class="input_inline">
+                <label for="inputBookIsComplete">Selesai dibaca</label>
+                <input id="inputBookIsComplete" type="checkbox" />
+              </div>
+              <button id="bookSubmit" type="submit">
+                Tambah buku
+              </button>
+            </form>
+          </section>
+        </div>
       </section>
+
 
       <section class="search_section">
         <!-- <h2>Cari Buku (Opsional)</h2> -->
@@ -60,19 +77,6 @@
         </form>
       </section>
 
-      <section class="book_shelf">
-        <h2>Result</h2>
-
-        <div id="searchBookResult" class="book_list">
-          <!-- <article class="book_item">
-            <h3>Book Title</h3>
-
-            <p>Penulis: John Doe</p>
-
-            <p>Tahun: 2002</p>
-          </article> -->
-        </div>
-      </section>
 
       <section class="book_shelf">
         <h2>Belum selesai dibaca</h2>

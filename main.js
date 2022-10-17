@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formSearch.addEventListener('submit', (e) => {
     e.preventDefault();
-    searchObject();
+    // searchObject();
   });
 
   loadBooks();

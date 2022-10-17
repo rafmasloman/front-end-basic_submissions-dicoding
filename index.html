@@ -26,6 +26,19 @@
       <h1 class="head_bar__title">Bookshelf Apps</h1>
     </header>
     <main>
+      <section class="search_section">
+        <!-- <h2>Cari Buku (Opsional)</h2> -->
+        <form id="searchBook">
+          <!-- <label for="searchBookTitle">Judul</label> -->
+          <input id="searchBookTitle" type="text" placeholder="Search" />
+
+          <button id="searchSubmit" type="submit">
+            <!-- Cari -->
+            <i class="fa fa-search search-icon"></i>
+          </button>
+        </form>
+      </section>
+
       <section class="input_section">
         <h2>Masukkan Buku Baru</h2>
         <form id="inputBook">
@@ -49,29 +62,6 @@
             Masukkan Buku ke rak <span>Belum selesai dibaca</span>
           </button>
         </form>
-      </section>
-
-      <section class="search_section">
-        <!-- <h2>Cari Buku (Opsional)</h2> -->
-        <form id="searchBook">
-          <!-- <label for="searchBookTitle">Judul</label> -->
-          <input id="searchBookTitle" type="text" placeholder="Search" />
-          <button id="searchSubmit" type="submit">Cari</button>
-        </form>
-      </section>
-
-      <section class="book_shelf">
-        <h2>Result</h2>
-
-        <div id="searchBookResult" class="book_list">
-          <!-- <article class="book_item">
-            <h3>Book Title</h3>
-
-            <p>Penulis: John Doe</p>
-
-            <p>Tahun: 2002</p>
-          </article> -->
-        </div>
       </section>
 
       <section class="book_shelf">

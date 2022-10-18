@@ -22,8 +22,9 @@ const STORE_DATA = 'store-data';
 
 let books = [];
 
+const searhObject = () => {};
 const searchBook = () => {
-  const searchValue = document.querySelector('#searchBookTitle');
+  const searchValue = document.querySelector('#searchBookTitle').value;
 
   const completeBooks = document.querySelector('#completeBookshelfList');
   completeBooks.innerHTML = '';
@@ -31,22 +32,32 @@ const searchBook = () => {
   const incompleteBooks = document.querySelector('#incompleteBookshelfList');
   incompleteBooks.innerHTML = '';
 
-  for (const book of books) {
-    const bookObject = makeBooks(book);
-    if (searchValue.value.toLowerCase().includes(book.title.toLowerCase())) {
+  if (searchValue != '') {
+    // for (const book of books) {
+    //   if (searchValue.includes(book.title)) {
+    //     const bookObject = makeBooks(books);
+    //     if (!book.isComplete) {
+    //       incompleteBooks.append(bookObject);
+    //       console.log(book.title);
+    //     }
+    //   }
+    // }
+    const getResult = books.filter((book) => {
+      return searchValue.toLowerCase().includes(book.title.toLowerCase());
+    });
+
+    for (const book of getResult) {
+      const bookObject = makeBooks(book);
       if (!book.isComplete) {
         incompleteBooks.append(bookObject);
-      } else {
-        completeBooks.append(bookObject);
-      }
-    } else {
-      console.log(book.title.toLowerCase());
-      if (!book.isComplete) {
-        incompleteBooks.append(bookObject);
+        console.log(getResult);
+        console.log(book.title);
       } else {
         completeBooks.append(bookObject);
       }
     }
+  } else {
+    loadBooks();
   }
 };
 

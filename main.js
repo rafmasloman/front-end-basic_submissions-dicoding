@@ -33,15 +33,6 @@ const searchBook = () => {
   incompleteBooks.innerHTML = '';
 
   if (searchValue != '') {
-    // for (const book of books) {
-    //   if (searchValue.includes(book.title)) {
-    //     const bookObject = makeBooks(books);
-    //     if (!book.isComplete) {
-    //       incompleteBooks.append(bookObject);
-    //       console.log(book.title);
-    //     }
-    //   }
-    // }
     const getResult = books.filter((book) => {
       return searchValue.toLowerCase().includes(book.title.toLowerCase());
     });

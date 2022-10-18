@@ -19,10 +19,10 @@ button {
 
 nav {
   position: absolute;
-  left: 150px;
+  right: 405px;
   display: flex;
   align-items: center;
-  top: 20px;
+  top: 36px;
 }
 
 nav > .logo-brand {
@@ -282,4 +282,19 @@ p {
 .book_shelf > .book_list > .book_item > .action > .red {
   background-color: darkred;
   color: white;
+}
+
+@media screen and (max-width: 375px) {
+  .hero {
+    flex-direction: column;
+  }
+  .right-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .left-content {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
 }
